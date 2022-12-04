@@ -1,4 +1,4 @@
-import { AttachmentBuilder, Colors, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
+import { AttachmentBuilder, Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
 import { getJson } from '../util/network-util';
 
 const STATUS_API_URL = 'https://api.mcsrvstat.us/2/%ip%';

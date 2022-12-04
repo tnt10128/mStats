@@ -1,4 +1,4 @@
-import { AttachmentBuilder, Colors, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
+import { Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
 import { getJson } from '../util/network-util';
 
 const BLOCKED_API_URL = 'https://ismyserverblocked.com/check/%ip%';

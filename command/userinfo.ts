@@ -1,4 +1,4 @@
-import { AttachmentBuilder, Colors, CommandInteraction, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
+import { Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
 import { getUuidByUserName } from '../util/mojang-api';
 
 const SKIN_API_URL = 'https://visage.surgeplay.com/bust/%uuid%';
@@ -22,7 +22,7 @@ module.exports = {
                                     .addFields({ name: 'UUID', value: uuid })
                                     .addFields({ name: 'Skull command', value: SKULL_COMMAND_FORMAT.replace(`%name%`, name) });
             interaction.reply({ embeds: [infoEmbed] });
-        } catch (error: any) {
+        } catch (error) {
             const errorEmbed = new EmbedBuilder()
                                     .setColor(Colors.Red)
                                     .setTitle(':red_circle: **Error**')
