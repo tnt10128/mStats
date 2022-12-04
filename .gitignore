@@ -23,6 +23,7 @@ coverage
 # API keys and secrets
 .env
 config.json
+config.prod.json
 
 # Dependency directory
 node_modules
