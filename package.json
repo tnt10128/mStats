@@ -1,0 +1,23 @@
+{
+  "name": "mstats",
+  "version": "1.0.0",
+  "description": "Discord bot with a variety of Minecraft-related functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/TNT10128/mStats"
+  },
+  "author": "TNT10128",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "discord.js": "^14.6.0",
+    "eslint-config-google": "^0.14.0",
+    "typescript": "^4.9.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.28.0"
+  }
+}
