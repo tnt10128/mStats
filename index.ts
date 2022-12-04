@@ -1,4 +1,4 @@
-import { Client, Events, GatewayIntentBits, Collection } from 'discord.js';
+import { Client, Events, GatewayIntentBits, Collection, Guild } from 'discord.js';
 import { token } from './config.json';
 import deploy from './deploy-commands';
 import fs = require('node:fs');
@@ -20,19 +20,19 @@ for (const file of commandFiles) {
 	}
 }
 
-client.once(Events.ClientReady, (event: any) => {
-    console.log(`Successfully logged in as ${event.user.tag}`);
+client.once(Events.ClientReady, (event: Client) => {
+	if (event.user) {
+		console.log(`Successfully logged in as ${event.user.tag}`);
+	}
     deploy();
 });
 
-client.on(Events.GuildCreate, (guild: any) => {
+client.on(Events.GuildCreate, (guild: Guild) => {
     console.log(`Joined guild: ${guild.name} (ID ${guild.id})`);
-    deploy();
 });
 
-client.on(Events.GuildDelete, (guild: any) => {
+client.on(Events.GuildDelete, (guild: Guild) => {
     console.log(`Removed from guild ${guild.name} (ID ${guild.id})`);
-    deploy();
 });
 
 client.on(Events.InteractionCreate, async (interaction: any) => {
