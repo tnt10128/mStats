@@ -32,7 +32,6 @@ module.exports = {
                     await interaction.reply({ embeds: [onlineResponse], files: [attachment] });
                     return;
                 }
-                onlineResponse
                 await interaction.reply({ embeds: [onlineResponse] });
             } else {
                 const offlineResponse = new EmbedBuilder()

@@ -1,4 +1,4 @@
-import { Client, Events, GatewayIntentBits, Collection, Guild } from 'discord.js';
+import { Client, Events, GatewayIntentBits, Collection, Guild, ActivityType } from 'discord.js';
 import { token } from './config.json';
 import deploy from './deploy-commands';
 import fs = require('node:fs');
@@ -20,9 +20,10 @@ for (const file of commandFiles) {
 	}
 }
 
-client.once(Events.ClientReady, (event: Client) => {
-	if (event.user) {
-		console.log(`Successfully logged in as ${event.user.tag}`);
+client.once(Events.ClientReady, (client: Client) => {
+	if (client.user) {
+		console.log(`Successfully logged in as ${client.user.tag}`);
+		client.user.setActivity('Minecraft servers', { type: ActivityType.Watching });
 	}
     deploy();
 });
