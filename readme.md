@@ -2,6 +2,7 @@
 A Discord bot with various Minecraft-related commands
 
 ![GNU GPL v3](https://img.shields.io/github/license/TNT10128/mStats?style=for-the-badge)
+![Codefactor code quality](https://img.shields.io/codefactor/grade/github/TNT10128/mStats?style=for-the-badge)
 
 ## ℹ️ Description
 mStats is a small Discord bot written with Discord.js version 14 that offers Minecraft-related commands to improve your server.
