@@ -27,7 +27,7 @@ module.exports = {
                     .addFields({ name: 'Version', value: response.version, inline: true })
                     .addFields({ 
                         name: 'MOTD', 
-                        value: `${response.motd.clean[0]}\n${response.motd.clean[1]}` 
+                        value: `${response.motd.clean.join('\n')}` 
                     })
                     .setURL(STATUS_USER_URL.replace('%ip%', url))
                     .setFooter({ text: `Powered by mcSrvStat.us` });
