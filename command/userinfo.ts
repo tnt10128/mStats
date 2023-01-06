@@ -1,8 +1,13 @@
 import { ChatInputCommandInteraction, Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
 import { getUuidByUserName } from '../util/mojang-api';
 
-const SKIN_API_URL = 'https://visage.surgeplay.com/bust/%uuid%';
-const SKULL_COMMAND_FORMAT = '/give @p minecraft:player_head{SkullOwner:"%name%"}'
+function getSkinApiUrlByUuid(uuid: string): string {
+    return `https://visage.surgeplay.com/bust/${uuid}`;
+}
+
+function getSkullCommandByUserName(userName: string): string {
+    return `/give @p minecraft:player_head{SkullOwner:"${userName}"}`;
+}
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,9 +26,9 @@ module.exports = {
             const infoEmbed = new EmbedBuilder()
                 .setColor(Colors.Green)
                 .setTitle(`:green_circle: **Info about ${name}**`)
-                .setThumbnail(`${SKIN_API_URL.replace('%uuid%', uuid)}`)
+                .setThumbnail(getSkinApiUrlByUuid(uuid))
                 .addFields({ name: 'UUID', value: uuid })
-                .addFields({ name: 'Skull command', value: SKULL_COMMAND_FORMAT.replace(`%name%`, name) });
+                .addFields({ name: 'Skull command', value: getSkullCommandByUserName(name) });
             interaction.reply({ embeds: [infoEmbed] });
         } catch (error) {
             const errorEmbed = new EmbedBuilder()

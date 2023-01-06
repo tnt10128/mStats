@@ -1,7 +1,9 @@
 import { ChatInputCommandInteraction, Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
 import { getJson } from '../util/network-util';
 
-const BLOCKED_API_URL = 'https://ismyserverblocked.com/check/%ip%';
+function getApiUrlWithServerIp(serverIp: string): string {
+    return `https://ismyserverblocked.com/check/${serverIp}`;
+}
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,7 +17,7 @@ module.exports = {
             ),
     async execute(interaction: ChatInputCommandInteraction) {
         const url = interaction.options.getString('ip')!;
-        getJson(BLOCKED_API_URL.replace('%ip%', url)).then(async (response: any) => {
+        getJson(getApiUrlWithServerIp(url)).then(async (response: any) => {
             if (response.success) {
                 if (!response.blocked) {
                     const unblockedResponse = new EmbedBuilder()
