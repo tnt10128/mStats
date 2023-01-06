@@ -4,8 +4,6 @@ import deploy from './deploy-commands';
 import fs = require('node:fs');
 import path = require('node:path');
 
-const VERSION = '1.0.0';
-
 const client: any = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
 
