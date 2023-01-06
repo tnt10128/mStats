@@ -14,7 +14,7 @@ const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.
 
 export default interface Command {
     data: SlashCommandBuilder;
-    execute: Function;
+    execute: (interaction: any) => Promise<unknown>;
 }
 
 function logJoinedGuildCount() {
