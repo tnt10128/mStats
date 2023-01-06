@@ -15,10 +15,6 @@
   "dependencies": {
     "@blad3mak3r/reddit-memes": "^0.2.7",
     "discord.js": "^14.7.1",
-    "eslint-config-google": "^0.14.0",
     "typescript": "^4.9.4"
-  },
-  "devDependencies": {
-    "eslint": "^8.31.0"
   }
 }
