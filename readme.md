@@ -14,6 +14,7 @@ Below are the commands currently available in mStats. This list will grow as mor
 - /spigotinfo \<resource ID> - gets information about a resource on SpigotMC.org
 - /userinfo \<player username> - gets information about a Minecraft Java account
 - /isblocked \<server IP> - tells you whether a Minecraft server is being blocked by Mojang
+- /meme - sends a random meme from the r/minecraftmemes subreddit
 
 ## ❓ How to use
 Most users should simply [invite MStats with this link](https://discord.com/api/oauth2/authorize?client_id=1045365024425775114&permissions=313344&scope=bot%20applications.commands).
