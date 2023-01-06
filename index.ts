@@ -12,6 +12,10 @@ client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'command');
 const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.endsWith('.ts'));
 
+function logJoinedGuildCount() {
+    console.log(`Bot is in ${client.guilds.cache.size} guilds`);
+}
+
 commandFiles.forEach((file: string) => {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
@@ -26,16 +30,19 @@ client.once(Events.ClientReady, (client: Client) => {
     if (client.user) {
         console.log(`Successfully logged in as ${client.user.tag}`);
         client.user.setActivity('Minecraft servers', { type: ActivityType.Watching });
+        logJoinedGuildCount();
     }
     deploy();
 });
 
 client.on(Events.GuildCreate, (guild: Guild) => {
     console.log(`Joined guild: ${guild.name} (ID ${guild.id})`);
+    logJoinedGuildCount();
 });
 
 client.on(Events.GuildDelete, (guild: Guild) => {
     console.log(`Removed from guild ${guild.name} (ID ${guild.id})`);
+    logJoinedGuildCount();
 });
 
 client.on(Events.InteractionCreate, async (interaction: any) => {
