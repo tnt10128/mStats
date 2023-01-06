@@ -1,8 +1,9 @@
 import { REST, Routes } from 'discord.js';
 import { clientId, token } from './config.json';
+import Command from './index';
 import fs from 'fs';
 
-const commands: any[] = [];
+const commands: Command[] = [];
 const commandFiles = fs.readdirSync('./command').filter((file: string) => file.endsWith('.ts'));
 
 commandFiles.forEach((file: string) => { 

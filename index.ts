@@ -1,4 +1,4 @@
-import { Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors } from 'discord.js';
+import { Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors, SlashCommandBuilder } from 'discord.js';
 import { token } from './config.json';
 import deploy from './deploy-commands';
 import fs = require('node:fs');
@@ -11,6 +11,11 @@ client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, 'command');
 const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.endsWith('.ts'));
+
+export default interface Command {
+    data: SlashCommandBuilder;
+    execute: Function;
+}
 
 function logJoinedGuildCount() {
     console.log(`Bot is in ${client.guilds.cache.size} guilds`);
