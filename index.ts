@@ -56,9 +56,9 @@ client.on(Events.GuildDelete, (guild: Guild) => {
     logJoinedGuildCount();
 });
 
-client.on(Events.InteractionCreate, async (interaction: any) => {
+client.on(Events.InteractionCreate, async (interaction: ChatInputCommandInteraction) => {
     if (!interaction.isChatInputCommand()) return;
-    const command = interaction.client.commands.get(interaction.commandName);
+    const command = client.commands.get(interaction.commandName);
     
     if (!command) {
         console.error(`No command matching ${interaction.commandName} was found.`);
