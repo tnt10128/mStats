@@ -1,4 +1,4 @@
-import { Colors, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, Colors, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { getRandomMeme } from '@blad3mak3r/reddit-memes';
 
 function getRedditUrlById(id: string, subreddit: string) {
@@ -11,7 +11,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('meme')
         .setDescription('Sends a random Minecraft meme.'),
-    async execute(interaction: any) {
+    async execute(interaction: ChatInputCommandInteraction) {
         const meme = await getRandomMeme(MINECRAFT_MEMES_SUBREDDIT);
         const embed = new EmbedBuilder()
             .setColor(Colors.Blue)

@@ -1,4 +1,4 @@
-import { Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
+import { ChatInputCommandInteraction, Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
 import { getUuidByUserName } from '../util/mojang-api';
 
 const SKIN_API_URL = 'https://visage.surgeplay.com/bust/%uuid%';
@@ -14,8 +14,8 @@ module.exports = {
                     .setDescription('The username of the player to check')
                     .setRequired(true)
             ),
-    async execute(interaction: any) {
-        const name = interaction.options.getString('name');
+    async execute(interaction: ChatInputCommandInteraction) {
+        const name = interaction.options.getString('name')!;
         try {
             const uuid = await getUuidByUserName(name);
             const infoEmbed = new EmbedBuilder()

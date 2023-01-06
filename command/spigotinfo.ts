@@ -1,4 +1,4 @@
-import { Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption } from 'discord.js';
+import { ChatInputCommandInteraction, Colors, EmbedBuilder, SlashCommandBuilder, SlashCommandIntegerOption } from 'discord.js';
 import { get } from '../util/network-util';
 
 const RESOURCE_API_URL = 'https://api.spiget.org/v2/resources/%id%';
@@ -14,15 +14,15 @@ module.exports = {
                     .setDescription('The ID of the resource to check')
                     .setRequired(true)
             ),
-    async execute(interaction: any) {
-        const id = interaction.options.getInteger('id');
-        get(RESOURCE_API_URL.replace('%id%', id)).then(async response => {
+    async execute(interaction: ChatInputCommandInteraction) {
+        const id = interaction.options.getInteger('id')!;
+        get(RESOURCE_API_URL.replace('%id%', id.toString())).then(async response => {
             const json = await response.json();
             if (response.ok) {
                 const infoResponse = new EmbedBuilder()
                     .setColor(Colors.Yellow)
                     .setTitle(`:green_circle: **Information about "${json.name}"**`)
-                    .setURL(RESOURCE_USER_URL.replace('%id%', id))
+                    .setURL(RESOURCE_USER_URL.replace('%id%', id.toString()))
                     .addFields({ name: 'Resource ID', value: `${json.id}` })
                     .addFields({ name: 'Downloads', value: `${json.downloads}` })
                     .addFields({ name: 'Likes', value: `${json.likes} ${json.likes == 0 ? ":(" : ""}` })

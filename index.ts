@@ -1,4 +1,4 @@
-import { Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors, SlashCommandBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors, SlashCommandBuilder } from 'discord.js';
 import { token } from './config.json';
 import deploy from './deploy-commands';
 import fs = require('node:fs');
@@ -14,7 +14,7 @@ const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.
 
 export default interface Command {
     data: SlashCommandBuilder;
-    execute: (interaction: any) => Promise<unknown>;
+    execute: (interaction: ChatInputCommandInteraction) => Promise<unknown>;
 }
 
 function logJoinedGuildCount() {
