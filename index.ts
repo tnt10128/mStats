@@ -10,7 +10,7 @@ client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'command');
 const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.endsWith('.ts'));
 
-for (const file of commandFiles) {
+commandFiles.forEach((file: string) => {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
     if ('data' in command && 'execute' in command) {
@@ -18,7 +18,7 @@ for (const file of commandFiles) {
     } else {
         console.warn(`The command at ${filePath} is missing a required "data" or "execute" property.`);
     }
-}
+});
 
 client.once(Events.ClientReady, (client: Client) => {
     if (client.user) {

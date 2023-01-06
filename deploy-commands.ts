@@ -5,10 +5,10 @@ import fs from 'fs';
 const commands: any[] = [];
 const commandFiles = fs.readdirSync('./command').filter((file: string) => file.endsWith('.ts'));
 
-for (const file of commandFiles) {
+commandFiles.forEach((file: string) => { 
     const command = require(`./command/${file}`);
     commands.push(command.data.toJSON());
-}
+})
 
 const rest = new REST({ version: '10' }).setToken(token);
 
