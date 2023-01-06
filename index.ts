@@ -1,4 +1,4 @@
-import { Client, Events, GatewayIntentBits, Collection, Guild, ActivityType } from 'discord.js';
+import { Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors } from 'discord.js';
 import { token } from './config.json';
 import deploy from './deploy-commands';
 import fs = require('node:fs');
@@ -14,6 +14,12 @@ const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.
 
 function logJoinedGuildCount() {
     console.log(`Bot is in ${client.guilds.cache.size} guilds`);
+}
+
+function createCommandErrorEmbed() {
+    return new EmbedBuilder()
+        .setTitle('Oops, there was an error with this command!')
+        .setColor(Colors.Red);
 }
 
 commandFiles.forEach((file: string) => {
@@ -59,7 +65,7 @@ client.on(Events.InteractionCreate, async (interaction: any) => {
     } catch (error) {
         console.error(error);
         await interaction.reply({ 
-            content: 'There was an error while executing this command!', 
+            embeds: [createCommandErrorEmbed()], 
             ephemeral: true 
         });
     }
