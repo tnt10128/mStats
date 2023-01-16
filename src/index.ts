@@ -1,11 +1,15 @@
 import { ChatInputCommandInteraction, Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors, SlashCommandBuilder } from 'discord.js';
-import { token } from '../config.json';
-import deploy from './deploy-commands';
-import fs = require('node:fs');
-import path = require('node:path');
+import config from './../config.json' assert { type: 'json' };
+import deploy from './deploy-commands.js';
+import path from 'node:path';
+import { fileURLToPath } from 'url';
+import fs from 'node:fs';
 
 const client: any = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const commandsPath = path.join(__dirname, 'command');
 const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.endsWith('.ts'));
@@ -25,9 +29,9 @@ function createCommandErrorEmbed() {
         .setColor(Colors.Red);
 }
 
-commandFiles.forEach((file: string) => {
+commandFiles.forEach(async (file: string) => {
     const filePath = path.join(commandsPath, file);
-    const command = require(filePath);
+    const command = await import(filePath);
     if ('data' in command && 'execute' in command) {
         client.commands.set(command.data.name, command);
     } else {
@@ -74,4 +78,4 @@ client.on(Events.InteractionCreate, async (interaction: ChatInputCommandInteract
     }
 });
 
-client.login(token);
+client.login(config.token);

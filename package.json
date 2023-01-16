@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Discord bot with a variety of Minecraft-related functions",
   "main": "./src/index.ts",
+  "type": "module",
   "scripts": {
-    "start": "npx ts-node ./src/index.ts"
+    "start": "npx ts-node --esm ./src/index.ts"
   },
   "repository": {
     "type": "git",
