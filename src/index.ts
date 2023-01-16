@@ -1,12 +1,12 @@
-import { ChatInputCommandInteraction, Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors, SlashCommandBuilder } from 'discord.js';
-import config from './../config.json' assert { type: 'json' };
-import deploy from './deploy-commands.js';
+import * as discordJs from 'discord.js';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'url';
-import fs from 'node:fs';
+import config from './../config.json' assert { type: 'json' };
+import deploy from './deploy-commands.js';
 
-const client: any = new Client({ intents: GatewayIntentBits.Guilds });
-client.commands = new Collection();
+const client: any = new discordJs.Client({ intents: discordJs.GatewayIntentBits.Guilds });
+client.commands = new discordJs.Collection();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,8 +15,8 @@ const commandsPath = path.join(__dirname, 'command');
 const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.endsWith('.ts'));
 
 export default interface Command {
-    data: SlashCommandBuilder;
-    execute: (interaction: ChatInputCommandInteraction) => Promise<unknown>;
+    data: discordJs.SlashCommandBuilder;
+    execute: (interaction: discordJs.ChatInputCommandInteraction) => Promise<unknown>;
 }
 
 function logJoinedGuildCount() {
@@ -24,9 +24,9 @@ function logJoinedGuildCount() {
 }
 
 function createCommandErrorEmbed() {
-    return new EmbedBuilder()
+    return new discordJs.EmbedBuilder()
         .setTitle('Oops, there was an error with this command!')
-        .setColor(Colors.Red);
+        .setColor(discordJs.Colors.Red);
 }
 
 commandFiles.forEach(async (file: string) => {
@@ -39,26 +39,26 @@ commandFiles.forEach(async (file: string) => {
     }
 });
 
-client.once(Events.ClientReady, (client: Client) => {
+client.once(discordJs.Events.ClientReady, (client: discordJs.Client) => {
     if (client.user) {
         console.log(`Successfully logged in as ${client.user.tag}`);
-        client.user.setActivity('Minecraft servers', { type: ActivityType.Watching });
+        client.user.setActivity('Minecraft servers', { type: discordJs.ActivityType.Watching });
         logJoinedGuildCount();
     }
     deploy();
 });
 
-client.on(Events.GuildCreate, (guild: Guild) => {
+client.on(discordJs.Events.GuildCreate, (guild: discordJs.Guild) => {
     console.log(`Joined guild: ${guild.name} (ID ${guild.id})`);
     logJoinedGuildCount();
 });
 
-client.on(Events.GuildDelete, (guild: Guild) => {
+client.on(discordJs.Events.GuildDelete, (guild: discordJs.Guild) => {
     console.log(`Removed from guild ${guild.name} (ID ${guild.id})`);
     logJoinedGuildCount();
 });
 
-client.on(Events.InteractionCreate, async (interaction: ChatInputCommandInteraction) => {
+client.on(discordJs.Events.InteractionCreate, async (interaction: discordJs.ChatInputCommandInteraction) => {
     if (!interaction.isChatInputCommand()) return;
     const command = client.commands.get(interaction.commandName);
     

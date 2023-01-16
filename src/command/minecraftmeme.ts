@@ -1,5 +1,5 @@
-import { ChatInputCommandInteraction, Colors, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { getRandomMeme } from '@blad3mak3r/reddit-memes';
+import * as discordJs from 'discord.js';
 
 function getRedditUrlById(id: string, subreddit: string) {
     return `https://www.reddit.com/r/${subreddit}/comments/${id}`;
@@ -7,14 +7,14 @@ function getRedditUrlById(id: string, subreddit: string) {
 
 const MINECRAFT_MEMES_SUBREDDIT = 'minecraftmemes';
 
-export const data = new SlashCommandBuilder()
+export const data = new discordJs.SlashCommandBuilder()
     .setName('meme')
     .setDescription('Sends a random Minecraft meme.');
-    
-export async function execute(interaction: ChatInputCommandInteraction) {
+
+export async function execute(interaction: discordJs.ChatInputCommandInteraction) {
     const meme = await getRandomMeme(MINECRAFT_MEMES_SUBREDDIT);
-    const embed = new EmbedBuilder()
-        .setColor(Colors.Blue)
+    const embed = new discordJs.EmbedBuilder()
+        .setColor(discordJs.Colors.Blue)
         .setTitle(meme.title.substring(0, 256))
         .setURL(getRedditUrlById(meme.id, meme.subreddit))
         .setImage(meme.image)
