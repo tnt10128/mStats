@@ -1,7 +1,7 @@
 import * as discordJs from 'discord.js';
 import fs from 'fs';
+import Command from '.';
 import config from './../config.json' assert { type: 'json' };
-import Command from './index';
 
 const commands: Command[] = [];
 const commandFiles = fs.readdirSync('./src/command').filter((file: string) => file.endsWith('.ts'));
