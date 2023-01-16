@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, Client, Events, GatewayIntentBits, Collection, Guild, ActivityType, EmbedBuilder, Colors, SlashCommandBuilder } from 'discord.js';
-import { token } from './config.json';
+import { token } from '../config.json';
 import deploy from './deploy-commands';
 import fs = require('node:fs');
 import path = require('node:path');

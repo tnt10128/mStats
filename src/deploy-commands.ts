@@ -1,10 +1,10 @@
 import { REST, Routes } from 'discord.js';
-import { clientId, token } from './config.json';
+import { clientId, token } from '../config.json';
 import Command from './index';
 import fs from 'fs';
 
 const commands: Command[] = [];
-const commandFiles = fs.readdirSync('./command').filter((file: string) => file.endsWith('.ts'));
+const commandFiles = fs.readdirSync('./src/command').filter((file: string) => file.endsWith('.ts'));
 
 commandFiles.forEach((file: string) => { 
     const command = require(`./command/${file}`);

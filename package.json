@@ -2,9 +2,9 @@
   "name": "mstats",
   "version": "1.0.0",
   "description": "Discord bot with a variety of Minecraft-related functions",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "scripts": {
-    "start": "npx ts-node index.ts"
+    "start": "npx ts-node ./src/index.ts"
   },
   "repository": {
     "type": "git",
