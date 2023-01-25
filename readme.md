@@ -17,7 +17,7 @@ Below are the commands currently available in mStats. This list will grow as mor
 - /meme - sends a random meme from the r/minecraftmemes subreddit
 
 ## ❓ How to use
-Most users should simply [invite MStats with this link](https://discord.com/api/oauth2/authorize?client_id=1045365024425775114&permissions=313344&scope=bot%20applications.commands).
+Most users should simply [invite mStats with this link](https://discord.com/api/oauth2/authorize?client_id=1045365024425775114&permissions=313344&scope=bot%20applications.commands).
 
 If you're an advanced user and want to self-host, create a file named `config.json` in the root directory of the project. Paste the contents of the `config.template.json` file into the file, obviously replacing the placeholders with their values from the Discord developer dashboard.
 
