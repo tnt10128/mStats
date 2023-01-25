@@ -4,7 +4,7 @@ import Command from '.';
 import config from './../config.json' assert { type: 'json' };
 
 const commands: Command[] = [];
-const commandFiles = fs.readdirSync('./src/command').filter((file: string) => file.endsWith('.ts'));
+const commandFiles = fs.readdirSync('./src/command').filter(isFileNameSuitableForCommand);
 
 commandFiles.forEach(async (file: string) => {
     const command = await import(`./command/${file}`);
@@ -12,6 +12,10 @@ commandFiles.forEach(async (file: string) => {
 });
 
 const rest = new discordJs.REST({ version: '10' }).setToken(config.token);
+
+function isFileNameSuitableForCommand(fileName: string): boolean {
+    return /\.(js|ts)$/i.test(fileName);
+}
 
 export default async function deploy() {
     try {
