@@ -11,11 +11,8 @@ function getStatusWebsiteUrlWithServerIp(serverIp: string): string {
 export const data = new discordJs.SlashCommandBuilder()
     .setName('serverinfo')
     .setDescription('View information about an online Minecraft server.')
-    .addStringOption(
-        (option: discordJs.SlashCommandStringOption) => option
-            .setName('ip')
-            .setDescription('The IP of the server to check')
-            .setRequired(true)
+    .addStringOption((option: discordJs.SlashCommandStringOption) =>
+        option.setName('ip').setDescription('The IP of the server to check').setRequired(true)
     );
 
 export async function execute(interaction: discordJs.ChatInputCommandInteraction) {
@@ -27,20 +24,20 @@ export async function execute(interaction: discordJs.ChatInputCommandInteraction
         const onlineResponse = new discordJs.EmbedBuilder()
             .setColor(discordJs.Colors.Green)
             .setTitle(`:green_circle: **${serverIp} is online!**`)
-            .setDescription(
-                `${json.players.online}/${json.players.max} players connected`
-            )
+            .setDescription(`${json.players.online}/${json.players.max} players connected`)
             .addFields({ name: 'Version', value: json.version, inline: true })
-            .addFields({ 
-                name: 'MOTD', 
-                value: `${json.motd.clean.join('\n')}` 
+            .addFields({
+                name: 'MOTD',
+                value: `${json.motd.clean.join('\n')}`
             })
             .setURL(getStatusWebsiteUrlWithServerIp(serverIp))
             .setFooter({ text: `Powered by mcSrvStat.us` });
         if (json.icon) {
             const fav = json.icon.split(',').slice(1).join(',');
             const imageStream = Buffer.from(fav, 'base64');
-            const attachment = new discordJs.AttachmentBuilder(imageStream, { name: 'favicon.png' }); 
+            const attachment = new discordJs.AttachmentBuilder(imageStream, {
+                name: 'favicon.png'
+            });
             onlineResponse.setThumbnail('attachment://favicon.png');
             await interaction.reply({ embeds: [onlineResponse], files: [attachment] });
             return;

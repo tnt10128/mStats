@@ -11,11 +11,8 @@ function getResourceWebsiteUrlWithResourceId(resourceId: number): string {
 export const data = new discordJs.SlashCommandBuilder()
     .setName('spigot')
     .setDescription('View information about a resource on SpigotMC.org.')
-    .addIntegerOption(
-        (option: discordJs.SlashCommandIntegerOption) => option
-            .setName('id')
-            .setDescription('The ID of the resource to check')
-            .setRequired(true)
+    .addIntegerOption((option: discordJs.SlashCommandIntegerOption) =>
+        option.setName('id').setDescription('The ID of the resource to check').setRequired(true)
     );
 export async function execute(interaction: discordJs.ChatInputCommandInteraction) {
     const id = interaction.options.getInteger('id')!;
@@ -36,7 +33,7 @@ export async function execute(interaction: discordJs.ChatInputCommandInteraction
         const errorResponse = new discordJs.EmbedBuilder()
             .setColor(discordJs.Colors.Red)
             .setTitle(':red_circle: **Error!**')
-            .setDescription('We couldn\'t find any info\n about this resource :(');
+            .setDescription("We couldn't find any info\n about this resource :(");
         await interaction.reply({ embeds: [errorResponse] });
     }
 }

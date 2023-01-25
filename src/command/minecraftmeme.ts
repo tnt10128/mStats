@@ -19,6 +19,6 @@ export async function execute(interaction: discordJs.ChatInputCommandInteraction
         .setURL(getRedditUrlById(meme.id, meme.subreddit))
         .setImage(meme.image)
         .setAuthor({ name: `${meme.ups} ⬆️ | ${meme.comments} 💬` })
-        .setFooter({ text: `Posted on r/${meme.subreddit} by u/${meme.author}` })
+        .setFooter({ text: `Posted on r/${meme.subreddit} by u/${meme.author}` });
     return await interaction.reply({ embeds: [embed] });
 }

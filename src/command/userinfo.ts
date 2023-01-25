@@ -12,8 +12,8 @@ function getSkullCommandByUserName(userName: string): string {
 export const data = new discordJs.SlashCommandBuilder()
     .setName('userinfo')
     .setDescription('View information about a Minecraft Java player.')
-    .addStringOption(
-        (option: discordJs.SlashCommandStringOption) => option
+    .addStringOption((option: discordJs.SlashCommandStringOption) =>
+        option
             .setName('name')
             .setDescription('The username of the player to check')
             .setRequired(true)

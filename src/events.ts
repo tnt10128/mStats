@@ -10,7 +10,9 @@ export default interface Listener {
 
 export function registerListeners() {
     const listenerPath = path.join(__dirname, 'event');
-    const listenerFiles = fs.readdirSync(listenerPath).filter((file: string) => file.endsWith('.ts'));
+    const listenerFiles = fs
+        .readdirSync(listenerPath)
+        .filter((file: string) => file.endsWith('.ts'));
     listenerFiles.forEach(async (file: string) => {
         const filePath = path.join(listenerPath, file);
         const listener = await import(filePath);
