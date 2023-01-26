@@ -14,7 +14,7 @@ export const __dirname = path.dirname(__filename);
 const commandsPath = path.join(__dirname, 'command');
 const commandFiles = fs.readdirSync(commandsPath).filter((file: string) => file.endsWith('.ts'));
 
-export default interface Command {
+export interface Command {
     data: discordJs.SlashCommandBuilder;
     execute: (interaction: discordJs.ChatInputCommandInteraction) => Promise<unknown>;
 }

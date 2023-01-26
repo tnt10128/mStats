@@ -77,10 +77,7 @@ async function getApiResponse(playerName: string, game: string): Promise<Respons
     return await fetch(`${API_URL}/game/all/${game}/${playerName}`);
 }
 
-export async function getStats<T>(
-    playerName: string,
-    game: string
-): Promise<T | null> {
+export async function getStats<T>(playerName: string, game: string): Promise<T | null> {
     const response = await getApiResponse(playerName, game);
     if (!response.ok) {
         return null;

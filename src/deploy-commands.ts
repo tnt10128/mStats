@@ -1,6 +1,6 @@
 import * as discordJs from 'discord.js';
 import fs from 'fs';
-import Command from '.';
+import { Command } from '.';
 import config from './../config.json' assert { type: 'json' };
 
 const commands: Command[] = [];
