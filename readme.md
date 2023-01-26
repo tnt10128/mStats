@@ -15,6 +15,7 @@ Below are the commands currently available in mStats. This list will grow as mor
 - /userinfo \<player username> - gets information about a Minecraft Java account
 - /isblocked \<server IP> - tells you whether a Minecraft server is being blocked by Mojang
 - /meme - sends a random meme from the r/minecraftmemes subreddit
+- /hive \<player name> - gets information about a Hive Bedrock player
 
 ## ❓ How to use
 Most users should simply [invite mStats with this link](https://discord.com/api/oauth2/authorize?client_id=1045365024425775114&permissions=313344&scope=bot%20applications.commands).
