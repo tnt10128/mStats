@@ -20,7 +20,7 @@ export default interface Command {
 }
 
 export function logJoinedGuildCount() {
-    console.log(`Bot is in ${client.guilds.cache.size} guilds`);
+    console.log(`The bot is in ${client.guilds.cache.size} guilds.`);
 }
 
 commandFiles.forEach(async (file: string) => {
