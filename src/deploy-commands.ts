@@ -17,13 +17,21 @@ function isFileNameSuitableForCommand(fileName: string): boolean {
     return /\.(js|ts)$/i.test(fileName);
 }
 
+// Probably not the best way to do this, but it works ¯\_(ツ)_/¯
+interface DiscordApiResponse {
+    length: number;
+}
+
 export default async function deploy() {
     try {
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-        const data: any = await rest.put(discordJs.Routes.applicationCommands(config.clientId), {
-            body: commands
-        });
+        const data: DiscordApiResponse = (await rest.put(
+            discordJs.Routes.applicationCommands(config.clientId),
+            {
+                body: commands
+            }
+        )) as DiscordApiResponse;
 
         console.log(`Successfully reloaded ${data.length} application (/) commands.`);
     } catch (error) {
