@@ -5,8 +5,19 @@ import { fileURLToPath } from 'url';
 import config from './../config.json' assert { type: 'json' };
 import { registerListeners } from './events.js';
 
-export const client: any = new discordJs.Client({ intents: discordJs.GatewayIntentBits.Guilds });
-client.commands = new discordJs.Collection();
+class CommandInteractionClient extends discordJs.Client {
+    commands: discordJs.Collection<string, Command>;
+
+    constructor(options: discordJs.ClientOptions, commands: discordJs.Collection<string, Command>) {
+        super(options);
+        this.commands = commands;
+    }
+}
+
+export const client: CommandInteractionClient = new CommandInteractionClient(
+    { intents: discordJs.GatewayIntentBits.Guilds },
+    new discordJs.Collection()
+);
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
