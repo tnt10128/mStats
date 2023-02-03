@@ -1,23 +1,21 @@
 const API_URL = 'https://api.playhive.com/v0';
 
-export interface SkyWarsStatistics {
+interface HiveStatistic {
     UUID: string;
     xp: number;
     played: number;
     victories: number;
     first_played: number;
+}
+
+export interface SkyWarsStatistics extends HiveStatistic {
     kills: number;
     mystery_chests_destroyed: number;
     ores_mined: number;
     spells_used: number;
 }
 
-export interface TreasureWarsStatistics {
-    UUID: string;
-    xp: number;
-    played: number;
-    victories: number;
-    first_played: number;
+export interface TreasureWarsStatistics extends HiveStatistic {
     kills: number;
     final_kills: number;
     deaths: number;
@@ -25,48 +23,28 @@ export interface TreasureWarsStatistics {
     prestige: number;
 }
 
-export interface HideAndSeekStatistics {
-    UUID: string;
-    xp: number;
-    played: number;
-    victories: number;
-    first_played: number;
+export interface HideAndSeekStatistics extends HiveStatistic {
     hider_kills: number;
     seeker_kills: number;
     deaths: number;
 }
 
-export interface SurvivalGamesStatistics {
-    UUID: string;
-    xp: number;
-    played: number;
-    victories: number;
-    first_played: number;
+export interface SurvivalGamesStatistics extends HiveStatistic {
     kills: number;
     crates: number;
     deathmatches: number;
     cows: number;
 }
 
-export interface DeathRunStatistics {
-    UUID: string;
-    xp: number;
-    played: number;
-    victories: number;
-    first_played: number;
+export interface DeathRunStatistics extends HiveStatistic {
     kills: number;
     deaths: number;
     checkpoints: number;
     activated: number;
 }
 
-export interface MurderMysteryStatistics {
-    UUID: string;
-    xp: number;
+export interface MurderMysteryStatistics extends HiveStatistic {
     uncapped_xp: number;
-    played: number;
-    victories: number;
-    first_played: number;
     murders: number;
     murderer_eliminations: number;
     deaths: number;
