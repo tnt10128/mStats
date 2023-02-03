@@ -1,5 +1,5 @@
 import * as discordJs from 'discord.js';
-import { getUuidByUserName } from './../util/mojang-api.js';
+import { getUuidByUserName } from '../util/mojang_api.js';
 
 function getSkinApiUrlByUuid(uuid: string): string {
     return `https://visage.surgeplay.com/bust/${uuid}`;

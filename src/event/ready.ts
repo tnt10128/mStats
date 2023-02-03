@@ -1,5 +1,5 @@
 import * as discordJs from 'discord.js';
-import deploy from '../deploy-commands.js';
+import deploy from '../deploy_commands.js';
 import { client, logJoinedGuildCount } from '../index.js';
 
 export const event = discordJs.Events.ClientReady;

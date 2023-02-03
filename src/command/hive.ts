@@ -1,5 +1,5 @@
 import * as discordJs from 'discord.js';
-import * as hive from '../util/hive-api.js';
+import * as hive from '../util/hive_api.js';
 
 export const data = new discordJs.SlashCommandBuilder()
     .setName('hive')
