@@ -1,7 +1,7 @@
 import * as discordJs from 'discord.js';
 import { client } from '../index.js';
 
-function createCommandErrorEmbed() {
+function createCommandErrorEmbed(): discordJs.EmbedBuilder {
     return new discordJs.EmbedBuilder()
         .setTitle('Oops, there was an error with this command!')
         .setColor(discordJs.Colors.Red);
@@ -10,7 +10,7 @@ function createCommandErrorEmbed() {
 export const event = discordJs.Events.InteractionCreate;
 export const once = false;
 
-export async function execute(interaction: discordJs.ChatInputCommandInteraction) {
+export async function execute(interaction: discordJs.ChatInputCommandInteraction): Promise<void> {
     if (!interaction.isChatInputCommand()) {
         return;
     }

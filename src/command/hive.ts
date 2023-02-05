@@ -26,7 +26,7 @@ export async function execute(interaction: discordJs.ChatInputCommandInteraction
             .setDescription(
                 'There was an error while looking up this player. Ensure you typed their name correctly.'
             );
-        return await interaction.reply({ embeds: [errorEmbed] });
+        await interaction.reply({ embeds: [errorEmbed] });
     }
 
     const statsEmbed = new discordJs.EmbedBuilder()
@@ -57,5 +57,5 @@ export async function execute(interaction: discordJs.ChatInputCommandInteraction
             inline: true
         });
 
-    return await interaction.reply({ embeds: [statsEmbed] });
+    await interaction.reply({ embeds: [statsEmbed] });
 }

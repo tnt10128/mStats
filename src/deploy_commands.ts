@@ -22,7 +22,7 @@ interface DiscordApiResponse {
     length: number;
 }
 
-export default async function deploy() {
+export default async function deploy(): Promise<void> {
     try {
         console.log(`Started refreshing ${commands.length} application (/) commands.`);
 

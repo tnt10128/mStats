@@ -1,7 +1,7 @@
 import { getRandomMeme } from '@blad3mak3r/reddit-memes';
 import * as discordJs from 'discord.js';
 
-function getRedditUrlById(id: string, subreddit: string) {
+function getRedditUrlById(id: string, subreddit: string): string {
     return `https://www.reddit.com/r/${subreddit}/comments/${id}`;
 }
 
@@ -20,5 +20,5 @@ export async function execute(interaction: discordJs.ChatInputCommandInteraction
         .setImage(meme.image)
         .setAuthor({ name: `${meme.ups} ⬆️ | ${meme.comments} 💬` })
         .setFooter({ text: `Posted on r/${meme.subreddit} by u/${meme.author}` });
-    return await interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
 }

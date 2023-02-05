@@ -8,7 +8,7 @@ export default interface Listener {
     execute: (event: unknown) => Promise<unknown>;
 }
 
-export function registerListeners() {
+export function registerListeners(): void {
     const listenerPath = path.join(__dirname, 'event');
     const listenerFiles = fs
         .readdirSync(listenerPath)

@@ -30,7 +30,7 @@ export interface Command {
     execute: (interaction: discordJs.ChatInputCommandInteraction) => Promise<unknown>;
 }
 
-export function logJoinedGuildCount() {
+export function logJoinedGuildCount(): void {
     console.log(`The bot is in ${client.guilds.cache.size} guilds.`);
 }
 
