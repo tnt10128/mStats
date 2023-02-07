@@ -2,6 +2,7 @@ import * as discordJs from 'discord.js';
 import fs from 'fs';
 import { Command } from '.';
 import config from '../config.json' assert { type: 'json' };
+import * as logging from './util/logging.js';
 
 const commands: Command[] = [];
 const commandFiles = fs.readdirSync('./src/command').filter(isFileNameSuitableForCommand);
@@ -17,23 +18,15 @@ function isFileNameSuitableForCommand(fileName: string): boolean {
     return /\.(js|ts)$/i.test(fileName);
 }
 
-// Probably not the best way to do this, but it works ¯\_(ツ)_/¯
-interface DiscordApiResponse {
-    length: number;
-}
-
 export default async function deploy(): Promise<void> {
     try {
-        console.log(`Started refreshing ${commands.length} application (/) commands.`);
+        logging.logInfo('Loading slash commands...');
 
-        const data: DiscordApiResponse = (await rest.put(
-            discordJs.Routes.applicationCommands(config.clientId),
-            {
-                body: commands
-            }
-        )) as DiscordApiResponse;
+        await rest.put(discordJs.Routes.applicationCommands(config.clientId), {
+            body: commands
+        });
 
-        console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+        logging.logInfo('Successfully loaded slash commands.');
     } catch (error) {
         console.error(error);
     }

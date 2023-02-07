@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'path';
 import { client, __dirname } from './index.js';
+import * as logging from './util/logging.js';
 
 export default interface Listener {
     event: unknown;
@@ -23,7 +24,7 @@ export function registerListeners(): void {
                 client.on(listener.event, listener.execute);
             }
         } else {
-            console.log(`Listener at path ${filePath} is missing a required property.`);
+            logging.logError(`The listener at path ${filePath} is missing a required property.`);
         }
     });
 }

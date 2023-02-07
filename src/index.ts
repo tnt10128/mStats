@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'url';
 import config from './../config.json' assert { type: 'json' };
 import { registerListeners } from './events.js';
+import * as logging from './util/logging.js';
 
 class CommandInteractionClient extends discordJs.Client {
     commands: discordJs.Collection<string, Command>;
@@ -31,7 +32,7 @@ export interface Command {
 }
 
 export function logJoinedGuildCount(): void {
-    console.log(`The bot is in ${client.guilds.cache.size} guilds.`);
+    logging.logInfo(`The bot is in ${client.guilds.cache.size} guilds.`);
 }
 
 commandFiles.forEach(async (file: string) => {
@@ -46,5 +47,6 @@ commandFiles.forEach(async (file: string) => {
     }
 });
 
+logging.logTitle('Loading mStats...');
 registerListeners();
 client.login(config.token);
